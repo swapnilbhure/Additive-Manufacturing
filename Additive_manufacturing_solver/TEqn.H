@@ -3,12 +3,11 @@
 {
     fvScalarMatrix TEqn
     (
-        fvm::ddt(cp, T)
-      + fvm::div(phi*fvc::interpolate(cp), T)
-      + hs*4.0*exp(-pow(4.0*(T-Tmelt)/(Tl-Ts),2))/Foam::sqrt(pi)/(Tl-Ts)*fvm::ddt(T)
-      + hs*4.0*exp(-pow(4.0*(T-Tmelt)/(Tl-Ts),2))/Foam::sqrt(pi)/(Tl-Ts)*(U & fvc::grad(T))
+        rho*fvm::ddt(cp, T)
+      + rho*fvm::div(phi*fvc::interpolate(cp), T)
+      + rho*hs*4.0*exp(-pow(4.0*(T-Tmelt)/(Tl-Ts),2))/Foam::sqrt(pi)/(Tl-Ts)*(fvm::ddt(T) + (U & fvc::grad(T)))
 //       +hs*(fvc::div(phi, alpha)+(fvc::ddt(alpha)))
-       - fvm::laplacian(lambda/rho, T)
+      - fvm::laplacian(lambda, T)
 
     );
 
@@ -23,7 +22,7 @@
     lambda = alpha*(-6.66+1.46e-2*T*sig3)*lambdaL+(1.0-alpha)*(1.57 + 1.6e-2*T*sig3- 1e-6*T*T*sig3*sig3)*lambdaS;  
     nu = alpha*nuL+(1.0-alpha)*nuS;
     rhok = 1.0 - Foam::max(beta*(T - Tl),0.0);
-    DC = DCl*Foam::pow(1.0-alpha,2)/(Foam::pow(alpha,3)+DCs);
+    DC = DCl*Foam::pow(1.0-alpha,2)/((Foam::pow(alpha,3)+DCs)*rho);
 }
 Info<< "Min/max T:" << min(T()).value() << ' '
     << max(T()).value() << endl;

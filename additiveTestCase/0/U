@@ -30,7 +30,7 @@ boundaryField
     ceiling     
     {
        type             marangoni;
-       marangonicoeff   0.1; //(dsigma/dt)*1/mu
+       marangonicoeff   -0.02;//0.1; //(dsigma/dT)*1/mu
         //value           uniform (0 0 0);
     }
 

@@ -29,8 +29,8 @@ boundaryField
     ceiling     
     {
         type            groovyBC;
-    variables       "v=1;b=0.0001;P=150;n=0.2;s=pos().x-v*time();zi=pos().z;maxZ=max(pts().z);maxX=max(pts().x);maxY=max(pts().y);yi=pos().y;";
-       gradientExpression "(1/10)*((1/(2*b*b*3.14))*P*n*exp(-pow(s-2*maxX/15,2)/(2*b*b)-pow(yi-maxY/2,2)/(2*b*b))-25*(T-300)-3e-8*(pow(T,4)-pow(300,4)))";
+    variables       "v=1.0;b=0.0002;P=200;n=0.2;pf=2;k=7;s=pos().x-v*time();zi=pos().z;maxZ=max(pts().z);maxX=max(pts().x);maxY=max(pts().y);yi=pos().y;";
+       gradientExpression "(1/k)*((1/(b*b*3.1416))*P*n*pf*exp(-pf*(pow(s-b,2)+pow(yi-maxY/2,2))/(b*b))-25*(T-300)-3e-8*(pow(T,4)-pow(300,4)))";
          fractionExpression "0";
     }
 

@@ -22,8 +22,9 @@ boundaryField
 {
     floor
     {
-        type            fixedValue;
-        value           uniform 0;
+    //    type            fixedValue;
+    //    value           uniform 0;
+    	type			zeroGradient;
     }
     ceiling
     {
@@ -31,7 +32,8 @@ boundaryField
     }
     fixedWalls
     {
-        type            fixedValue;
-        value           uniform 0;
+     //   type            fixedValue;
+     //   value           uniform 0;
+     	type			zeroGradient;
     }
 }

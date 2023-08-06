@@ -21,16 +21,9 @@ License
     You should have received a copy of the GNU General Public License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
-Reference
-    Universität Bayreuth
-    Lehrstuhl für Technische Thermodynamik und Trasnportprozesse - LTTT
-    Fabian Rösler
-    Universitätsstraße 30
-    95440 Bayreuth
-    Tel.: +49 (921) 55-7163
 
 Application
-    tempResidualStressFoam
+    elasticPlasticWeldPoolFoam
 
 dDescription
     Solves a convection dominated solid/liquid phase change process.
@@ -97,7 +90,7 @@ int main(int argc, char *argv[])
             }
         }
         gradT=fvc::grad(T);
-        
+    /*    
         //-- Solve for residual elastic stress
        
             Info<< "\nCalculating displacement field\n" << endl;
@@ -106,9 +99,11 @@ int main(int argc, char *argv[])
             scalar initialResidual = 0;
             #include "solveDisplacementField.H"
             #include "CalculateStress.H"
+            
+   */
                runTime.write();
              // Told = T;
-        
+       
 
         Info<< "ExecutionTime = " << runTime.elapsedCpuTime() << " s"
             << "  ClockTime = " << runTime.elapsedClockTime() << " s"

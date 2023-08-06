@@ -147,7 +147,7 @@
             runTime.timeName(),
             mesh
         ),
-        DCl*Foam::pow(1.0-alpha,2)/(Foam::pow(alpha,3)+DCs)
+        DCl*Foam::pow(1.0-alpha,2)/((Foam::pow(alpha,3)+DCs)*rho)
     );
 
     // Thermal conductivity field
